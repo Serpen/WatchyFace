@@ -2,7 +2,7 @@
 #define SETTINGS_H
 
 //Weather Settings
-#define CITY_ID "5128581" //New York City https://openweathermap.org/current#cityid
+#define CITY_ID "2864475" //NMS https://openweathermap.org/current#cityid
 
 //You can also use LAT,LON for your location instead of CITY_ID, but not both
 //#define LAT "40.7127" //New York City, Looked up on https://www.latlong.net/
@@ -19,8 +19,8 @@
 #define TEMP_LANG "en"
 #define WEATHER_UPDATE_INTERVAL 30 //must be greater than 5, measured in minutes
 //NTP Settings
-#define NTP_SERVER "pool.ntp.org"
-#define GMT_OFFSET_SEC 3600 * -5 //New York is UTC -5 EST, -4 EDT, will be overwritten by weather data
+#define NTP_SERVER "de.pool.ntp.org"
+#define GMT_OFFSET_SEC 3600 * +2 //New York is UTC -5 EST, -4 EDT, will be overwritten by weather data
 
 watchySettings settings{
     #ifdef CITY_ID

@@ -1,1 +1,1 @@
-To toggle between Dark Mode/Light Mode, change `#define DARKMODE true` in `Watchy_7_SEG.cpp`
+Pseudo-Fork of the [7 Segment Watchface](https://github.com/sqfmi/Watchy) for OpenSource E-Paper Watch [Watchy](https://watchy.sqfmi.com/) 
