@@ -15,7 +15,9 @@ class Watchy7SEG : public Watchy{
         void drawTime();
         void drawDate();
         void drawSteps();
-        void drawWeather();
+        void drawSGDay();
+        void drawKW();
+        void drawTemp();
         void drawBattery();
 };
 
