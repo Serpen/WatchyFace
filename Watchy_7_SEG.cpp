@@ -1,4 +1,5 @@
 #include "Watchy_7_SEG.h"
+#include "kw.h"
 
 #define DARKMODE false
 #define Y1998 883609200UL
@@ -72,11 +73,30 @@ void Watchy7SEG::drawSGDay()
 
 void Watchy7SEG::drawKW()
 {
-  
+  display.setFont(&DSEG7_Classic_Bold_25);
+  display.setCursor(145, 158);
+
+  time_t tm =  makeTime(currentTime);
+  int kw = getISOWeek(tm);
+  display.print("KW ");
+  display.print(kw);
 }
 
 void Watchy7SEG::drawTemp() {
+  display.setFont(&DSEG7_Classic_Regular_39);
+  
   uint8_t temperature = sensor.readTemperature();
+  int16_t  x1, y1;
+  uint16_t w, h;
+  display.getTextBounds(String(temperature), 0, 0, &x1, &y1, &w, &h);
+  if(159 - w - x1 > 87){
+      display.setCursor(159 - w - x1, 150);
+  }else{
+      display.setFont(&DSEG7_Classic_Bold_25);
+      display.getTextBounds(String(temperature), 0, 0, &x1, &y1, &w, &h);
+      display.setCursor(159 - w - x1, 136);
+  }
+  display.println(temperature);
 }
 
 void Watchy7SEG::drawSteps()
