@@ -1,6 +1,6 @@
 #include "Watchy_7_SEG.h"
 
-#define DARKMODE true
+#define DARKMODE false
 
 const uint8_t BATTERY_SEGMENT_WIDTH = 7;
 const uint8_t BATTERY_SEGMENT_HEIGHT = 11;
@@ -14,7 +14,7 @@ void Watchy7SEG::drawWatchFace(){
     drawTime();
     drawDate();
     drawSteps();
-    drawWeather();
+    //drawWeather();
     drawBattery();
     display.drawBitmap(116, 75, WIFI_CONFIGURED ? wifi : wifioff, 26, 18, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
     if(BLE_CONFIGURED){
@@ -73,8 +73,13 @@ void Watchy7SEG::drawDate(){
     }
     display.println(currentTime.Day);
     display.setCursor(5, 150);
-    display.println(tmYearToCalendar(currentTime.Year));// offset from 1970, since year is stored in uint8_t
+    time_t mynow = makeTime(currentTime);
+    //display.println(now());// offset from 1970, since year is stored in uint8_t
+    display.println(((mynow-883609200UL)/SECS_PER_DAY /*10227*/ ) % 10000);// offset from 1970, since year is stored in uint8_t
+    //display.println((elapsedDays(now()) - elapsedDays(883609200) /*10227*/ ) % 10000);// offset from 1970, since year is stored in uint8_t
+    // display.println(tmYearToCalendar(currentTime.Year));// offset from 1970, since year is stored in uint8_t
 }
+
 void Watchy7SEG::drawSteps(){
     // reset step counter at midnight
     if (currentTime.Hour == 0 && currentTime.Minute == 0){
@@ -85,6 +90,7 @@ void Watchy7SEG::drawSteps(){
     display.setCursor(35, 190);
     display.println(stepCount);
 }
+
 void Watchy7SEG::drawBattery(){
     display.drawBitmap(158, 73, battery, 37, 21, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
     display.fillRect(163, 78, 27, BATTERY_SEGMENT_HEIGHT, DARKMODE ? GxEPD_BLACK : GxEPD_WHITE);//clear battery segments
