@@ -16,7 +16,7 @@ const uint16_t getDayOfYear(uint16_t year, uint8_t month, uint8_t day) {
 
 // ISO-Woche berechnen aus Unix-Zeitstempel
 const uint8_t getISOWeek(tmElements_t timestamp) {
-    const uint16_t yday = getDayOfYear(timestamp.Year + YEAR_OFFSET, timestamp.Month, timestamp.Day);
+    const uint16_t yday = getDayOfYear(timestamp.Year + 1970, timestamp.Month, timestamp.Day);
 
     // ISO-Formel: Woche = (TagImJahr - TagDerWoche + 10) / 7
     uint8_t week = (yday - timestamp.Wday + 10) / 7;

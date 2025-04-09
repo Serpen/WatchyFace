@@ -1,7 +1,7 @@
 #include "WatchyFace.h"
-#include "kw.cpp"
+//#include "kw.cpp"
 
-WatchyFace::WatchyFace() {};
+//WatchyFace::WatchyFace() {};
 
 void WatchyFace::drawWatchFace()
 {
@@ -58,14 +58,13 @@ void WatchyFace::drawDate()
   display.println(currentTime.Day);
 }
 
-#define SECS_PER_HOUR ((time_t)(3600UL))
-#define SECS_PER_DAY  ((time_t)(SECS_PER_HOUR * 24UL))
-
 void WatchyFace::drawSGDay()
 {
   display.setCursor(5, 150);
 #ifdef WATCHY_SIM
   const time_t mynow = time(0);
+  const auto SECS_PER_HOUR = ((time_t)(3600UL));
+  const auto SECS_PER_DAY = ((time_t)(SECS_PER_HOUR * 24UL));
 #else
   const time_t mynow = makeTime(currentTime);
 #endif

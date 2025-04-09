@@ -20,8 +20,9 @@ constexpr uint8_t BATTERY_SEGMENT_HEIGHT = 11;
 constexpr uint8_t BATTERY_SEGMENT_SPACING = 9;
 
 class WatchyFace : public Watchy{
+    using Watchy::Watchy;
     public:
-        WatchyFace();
+        //WatchyFace();
         void drawWatchFace();
         void drawTime();
         void drawDate();
