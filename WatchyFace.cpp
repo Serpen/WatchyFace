@@ -1,6 +1,7 @@
 #include "WatchyFace.h"
-//#include "kw.cpp"
-
+#ifdef WATCHY_SIM
+#include "kw.cpp"
+#endif
 //WatchyFace::WatchyFace() {};
 
 void WatchyFace::drawWatchFace()
