@@ -1,17 +1,22 @@
+#ifndef KWH
+#define KWH
+
+#ifdef WATCHY_SIM
+#include "..\..\Watchy.h"
+#else // WATCHY_SIM
+#include <Watchy.h>
+#endif // WATCHY_SIM
+
+#include <time.h>
 
 // Anzahl Tage in jedem Monat (nicht-Schaltjahr)
-const int daysInMonth[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+const uint8_t daysInMonth[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 
-bool isLeapYear(int year);
-
-// Unix-Timestamp → Jahr, Monat, Tag
-void unixToDate(unsigned long timestamp, int &year, int &month, int &day);
-
-// Wochentag berechnen (ISO: Montag = 1, Sonntag = 7)
-int getWeekday(int year, int month, int day);
+const bool isLeapYear(uint16_t year);
 
 // Tag im Jahr berechnen (1–365/366)
-int getDayOfYear(int year, int month, int day);
+const uint16_t getDayOfYear(uint16_t year, uint8_t month, uint8_t day);
 
-// ISO-Woche berechnen aus Unix-Zeitstempel
-int getISOWeek(unsigned long timestamp);
+const uint8_t getISOWeek(tmElements_t timestamp);
+
+#endif
